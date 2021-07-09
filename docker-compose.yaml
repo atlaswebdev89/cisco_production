@@ -1,0 +1,80 @@
+version: '3.1'
+
+services:
+    
+    web-server:
+        image: webdev89/phpdebian
+        restart: always
+        container_name: cisco 
+        ports:
+          - 8081:80
+        environment:
+            DB_HOST: db
+            DB_DB: mem
+            DB_USER: user
+            DB_PASS: user
+            MEMCACHED_1: memcached-1
+            MEMCACHED_2: memcached-2
+            MEMCACHED_3: memcached-3
+        volumes:
+          - ./src/:/var/www/html
+        depends_on:
+          - db
+        networks:
+          - memcachedLinks
+          
+    memcached-1:
+        image: memcached
+        container_name: Memcached-1
+        restart: always
+        networks:
+          - memcachedLinks
+    memcached-2:
+        image: memcached
+        container_name: Memcached-2
+        restart: always
+        networks:
+          - memcachedLinks
+    memcached-3:
+        image: memcached
+        container_name: Memcached-3
+        restart: always
+        networks:
+          - memcachedLinks
+    
+    db:
+        image: mysql:5.7
+        container_name: MysqlMemcached
+        restart: always
+        ports:
+          - 8906:3306
+        environment:
+          MYSQL_DATABASE: mem
+          MYSQL_USER: user 
+          MYSQL_PASSWORD: user
+          MYSQL_ROOT_PASSWORD: root
+        volumes:
+          - ./mysql_dump:/docker-entrypoint-initdb.d
+          - MysqlMemcached:/var/lib/mysql
+        networks:
+          - memcachedLinks
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: phpmyadmin_mem
+        restart: always
+        ports: 
+          - 8927:80
+        environment:
+          PMA_HOST: db
+        depends_on:
+          - db
+        networks:
+          - memcachedLinks
+          
+networks:
+  memcachedLinks:
+    driver: bridge
+
+volumes:
+  MysqlMemcached:
