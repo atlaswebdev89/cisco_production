@@ -1,0 +1,28 @@
+{
+    "name": "atlas/cisco",
+    "description": "info wifi ap cisco brest",
+    "type": "project",
+    "require": {
+        "slim/slim": "^3.12",
+        "slim/twig-view": "^2.5",
+        "phpmailer/phpmailer": "^6.0",
+        "slim/flash": "^0.4.0",
+        "monolog/monolog": "^1.24",
+        "phpoffice/phpexcel": "^1.8"
+    },
+    "license": "atlas", 
+    "authors": [
+        {
+            "name": "atlas",
+            "email": "doroshuk33@yandex.by"
+        }
+    ],
+    "autoload": {
+        	"psr-4": {
+                    "Wifi\\": "library/Wifi",
+                    "Model\\": "model",
+                    "Controller\\": "controller",
+                    "Interfaces\\": "interfaces"
+                	}
+       }
+}
