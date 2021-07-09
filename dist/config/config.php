@@ -2,10 +2,10 @@
 
 define('PREF', 'cisco_');
 
-define('HOST', 'localhost');
-define('DBNAME', 'cisco_ap');
-define('USER', 'cisco');
-define('PASSWORD', 'brestcoredallas89');
+define('HOST', getenv('DB_HOST'));
+define('DBNAME', getenv('DB_DB'));
+define('USER', getenv('DB_USER'));
+define('PASSWORD', getenv('DB_PASS'));
 
 define('MAX_TIME_SESSION', 3600);
 define('INTERVAL_UPDATE', 300);

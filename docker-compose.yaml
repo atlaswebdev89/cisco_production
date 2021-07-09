@@ -10,71 +10,57 @@ services:
           - 8081:80
         environment:
             DB_HOST: db
-            DB_DB: mem
-            DB_USER: user
-            DB_PASS: user
-            MEMCACHED_1: memcached-1
-            MEMCACHED_2: memcached-2
-            MEMCACHED_3: memcached-3
+            DB_DB: cisco_ap
+            DB_USER: cisco
+            DB_PASS: brestcoredallas89
+            MEMCACHED_1: memcached
         volumes:
-          - ./src/:/var/www/html
+          - ./VirtualHosts/:/etc/apache2/sites-enabled/
+          - ./dist/:/var/www/html
         depends_on:
           - db
         networks:
-          - memcachedLinks
+          - cisco_network
           
-    memcached-1:
+    memcached:
         image: memcached
-        container_name: Memcached-1
+        container_name: MemcachedOne
         restart: always
         networks:
-          - memcachedLinks
-    memcached-2:
-        image: memcached
-        container_name: Memcached-2
-        restart: always
-        networks:
-          - memcachedLinks
-    memcached-3:
-        image: memcached
-        container_name: Memcached-3
-        restart: always
-        networks:
-          - memcachedLinks
-    
+          - cisco_network
     db:
         image: mysql:5.7
-        container_name: MysqlMemcached
+        container_name: CiscoDB
         restart: always
         ports:
-          - 8906:3306
+          - 8082:3306
         environment:
-          MYSQL_DATABASE: mem
-          MYSQL_USER: user 
-          MYSQL_PASSWORD: user
+          MYSQL_DATABASE: cisco_ap
+          MYSQL_USER: cisco 
+          MYSQL_PASSWORD: brestcoredallas89
           MYSQL_ROOT_PASSWORD: root
         volumes:
-          - ./mysql_dump:/docker-entrypoint-initdb.d
-          - MysqlMemcached:/var/lib/mysql
+          - ./app/dump/:/docker-entrypoint-initdb.d
+          - MysqlCisco:/var/lib/mysql
         networks:
-          - memcachedLinks
+          - cisco_network
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
-        container_name: phpmyadmin_mem
+        container_name: phpmyadmin
         restart: always
         ports: 
-          - 8927:80
+          - 8083:80
         environment:
           PMA_HOST: db
         depends_on:
           - db
         networks:
-          - memcachedLinks
+          - cisco_network
           
 networks:
-  memcachedLinks:
+  cisco_network:
     driver: bridge
 
 volumes:
-  MysqlMemcached:
+  MysqlCisco:

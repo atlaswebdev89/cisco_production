@@ -12,7 +12,7 @@ var gulp = require('gulp'),
 
 //Копирование файлов php html json log из папки app
 gulp.task("copy", function () {
-    return gulp.src ("app/**/*.+(html|php|json|log)")
+    return gulp.src ("app/**/*.+(html|php|json|log|lock|js|css)")
             .pipe (gulp.dest("dist/"))
 });
 //Копирование htaccess с использованием дополнительнной опции dot:true
@@ -29,62 +29,55 @@ gulp.task("vendors", function () {
 
 //Копируем шрифты
 gulp.task('fonts', function() {
-  return gulp.src('app/fonts/**/*')
-    .pipe(gulp.dest('dist/fonts'))
+  return gulp.src('app/templates/fonts/**/*')
+    .pipe(gulp.dest('dist/templates/fonts'))
+});
+
+//Копируем шрифты
+gulp.task('session', function() {
+  return gulp.src('app/sessions/**/*')
+    .pipe(gulp.dest('dist/sessions'))
 });
 
 //Оптимизация css
 gulp.task("css", function () {
-   return gulp.src("app/css/**/*.css")
+   return gulp.src("app/templates/css/**/*.css")
         .pipe(concat('main.css'))
         .pipe(autoprefixer())
         .pipe(cssnano())
         .pipe(rename({ suffix: '.min' }))
-        .pipe(gulp.dest("dist/css")); 
+        .pipe(gulp.dest("dist/templates/css")); 
 });
 
 //Оптимизация js
 gulp.task("scripts", function() {
-    return gulp.src("app/js/*.js") // директория откуда брать исходники
+    return gulp.src("app/templates/js/*.js") // директория откуда брать исходники
         .pipe(concat('main.js')) // объеденим все js-файлы в один 
         .pipe(uglify()) // вызов плагина uglify - сжатие кода
         .pipe(rename({ suffix: '.min' })) // вызов плагина rename - переименование файла с приставкой .min
-        .pipe(gulp.dest("dist/js")); // директория продакшена, т.е. куда сложить готовый файл
+        .pipe(gulp.dest("dist/templates/js")); // директория продакшена, т.е. куда сложить готовый файл
 });
 
 
 //Оптимизация и копирование изображений
 gulp.task("images", function() {
-    return gulp.src("app/img/**/*.+(png|jpeg|jpg|svg|gif|ico)")
+    return gulp.src("app/templates/images/**/*.+(png|jpeg|jpg|svg|gif|ico)")
             .pipe(cache(imagemin({
                 progressive: true,
                 svgoPlugins: [{ removeViewBox: false }],
                 interlaced: true
             })))
-            .pipe(gulp.dest("dist/images"))
+            .pipe(gulp.dest("dist/templates/images"))
 });
-
-//Оптимизация и копирование изображений проектов loft
-gulp.task("images_projects", function() {
-    return gulp.src("app/loft_projects/**/*.+(png|jpeg|jpg|svg|gif|ico)")
-            .pipe(cache(imagemin({
-                progressive: true,
-                svgoPlugins: [{ removeViewBox: false }],
-                interlaced: true
-            })))
-            .pipe(gulp.dest("dist/loft_projects"))
-});
-
 
 //Следить за изменениями в файлах
 gulp.task ("watcher", function () {
     gulp.watch('app/**/*.+(html|php|json|log)',   gulp.parallel('copy'));
     gulp.watch("app/vendor/**/*",  gulp.parallel('vendors'));
-    gulp.watch("app/fonts/**/*",  gulp.parallel('fonts'));
-    gulp.watch("app/img/**/*.+(png|jpeg|jpg|svg|gif|ico)",  gulp.parallel('images'));
-    gulp.watch("app/loft_projects/**/*.+(png|jpeg|jpg|svg|gif|ico)",  gulp.parallel('images_projects'));
-    gulp.watch("app/css/**/*.css", gulp.parallel("css"));
-    gulp.watch("app/js/**/*.js", gulp.parallel("scripts"));
+    gulp.watch("app/templates/fonts/**/*",  gulp.parallel('fonts'));
+    gulp.watch("app/templates/images/**/*.+(png|jpeg|jpg|svg|gif|ico)",  gulp.parallel('images'));
+    gulp.watch("app/templates/css/**/*.css", gulp.parallel("css"));
+    gulp.watch("app/templates/js/**/*.js", gulp.parallel("scripts"));
 });
 
 //Для удаления папки dist перед сборкой
@@ -97,7 +90,7 @@ gulp.task('clear', function (callback) {
 	return cache.clearAll();
 })
 
-gulp.task("default", gulp.parallel("copy", "htaccess", "vendors", "images", "images_projects", "fonts","css","scripts", "watcher"));
-gulp.task("build", gulp.series("del", "clear", "copy", "htaccess", "vendors", "images", "images_projects", "fonts","css","scripts"));
+gulp.task("default", gulp.parallel("copy", "htaccess", "vendors", "session", "images",  "fonts","css","scripts", "watcher"));
+gulp.task("build", gulp.series("del", "clear", "copy", "htaccess", "vendors", "session", "images",  "fonts","css","scripts"));
 
 
