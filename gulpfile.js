@@ -9,13 +9,13 @@ var gulp = require('gulp'),
     uglify = require("gulp-uglify"), // Минимизация javascript
     rename = require("gulp-rename"); // Переименование файлов
 
+var shell = require("gulp-shell"); // Переименование файлов
+
 //Копирование файлов php html json log из папки app
 gulp.task("copy", function () {
-    return gulp.src ("app/**/*.+(html|php|json|log|lock|js)")
+    return gulp.src ("app/**/*.+(html|php|json|log|lock)")
             .pipe (gulp.dest("dist/"))
 });
-
-
 
 //Копирование htaccess с использованием дополнительнной опции dot:true
 gulp.task("htaccess", function () {
@@ -35,10 +35,11 @@ gulp.task('fonts', function() {
     .pipe(gulp.dest('dist/templates/fonts'))
 });
 
-//Копируем шрифты
+//Копируем папку для хранения сессий
 gulp.task('session', function() {
-  return gulp.src('app/sessions/**/*')
-    .pipe(gulp.dest('dist/sessions'))
+  return gulp.src('app/sessions')
+    .pipe(gulp.dest('dist/sessions/'))
+    .pipe(shell(['chmod -R 777 dist/sessions']))
 });
 
 // *************** CSS ******************************************************* 
@@ -63,7 +64,7 @@ gulp.task("css", function () {
 // *************** JS ******************************************************* 
 //Копирование файлов css дополнительных расширений для проекта
 gulp.task("copy-js-ext", function () {
-    return gulp.src ("app/extensions-front/**/*.+(js)")
+    return gulp.src ("app/extensions-front/**/*.js")
             .pipe(rename({dirname: ""})) // убрать директории
             .pipe (gulp.dest("dist/templates/js"))
 });
@@ -112,7 +113,8 @@ gulp.task('clear', function (callback) {
 
 gulp.task("default", gulp.parallel(
                                     "copy", 
-                                    "copy-css-ext",  
+                                    "copy-css-ext", 
+                                    "copy-js-ext",
                                     "htaccess", 
                                     "vendors", 
                                     "session", 
@@ -127,6 +129,7 @@ gulp.task("build", gulp.series(
                                     "clear", 
                                     "copy", 
                                     "copy-css-ext", 
+                                    "copy-js-ext",
                                     "htaccess", 
                                     "vendors", 
                                     "session", 
