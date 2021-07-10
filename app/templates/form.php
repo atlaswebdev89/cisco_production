@@ -6,7 +6,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="css/bootstrap.css" />
-		<link rel="stylesheet" href="css/icons.css" />
+	<link rel="stylesheet" href="css/icons.css" />
+        <link rel="stylesheet" href="/css/main.min.css" />
 		<link rel="stylesheet" href="css/style.css" />
 		<link rel="stylesheet" href="css/custom.css" />
 		<link rel="stylesheet" href="css/index.css" />

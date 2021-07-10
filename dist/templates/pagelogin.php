@@ -4,12 +4,11 @@
   <title>{{title}}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-        <link rel="stylesheet" href="/css/bootstrap.css" />
+                <link rel="stylesheet" href="/css/bootstrap.css" />
 		<link rel="stylesheet" href="/css/icons.css" />
-		<link rel="stylesheet" href="/css/style.css" />
-		<link rel="stylesheet" href="/css/custom.css" />
-		<link rel="stylesheet" href="/css/index.css" />
-        <link rel="stylesheet" href="/css/bootstrap-formhelpers.min.css" />
+                
+                <link rel="stylesheet" href="/css/bootstrap-formhelpers.min.css" />
+                <link rel="stylesheet" href="/css/main.min.css" />
                 <!--Фавикон-->
                 <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
 		<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />

@@ -1,4 +1,3 @@
 npm install gulp --save-dev
 nmp init (создать package.json)
 npm i gulp-sass gulp-cssnano gulp-autoprefixer gulp-imagemin gulp-concat gulp-uglify gulp-rename del gulp-cache --save-dev
-123
