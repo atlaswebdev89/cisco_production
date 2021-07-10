@@ -36,11 +36,9 @@ gulp.task('fonts', function() {
 });
 
 //Копируем папку для хранения сессий
-gulp.task('session', function() {
-  return gulp.src('app/sessions')
-    .pipe(gulp.dest('dist/sessions/'))
-    .pipe(shell(['chmod -R 777 dist/sessions']))
-});
+gulp.task('session', 
+    shell.task('mkdir dist/sessions &&chmod -R 777 dist/sessions')
+);
 
 // *************** CSS ******************************************************* 
 //Копирование файлов css дополнительных расширений для проекта
