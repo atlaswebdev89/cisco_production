@@ -115,7 +115,6 @@ gulp.task("default", gulp.parallel(
                                     "copy-js-ext",
                                     "htaccess", 
                                     "vendors", 
-                                    "session", 
                                     "images",  
                                     "fonts",
                                     "css",
