@@ -23,7 +23,8 @@ abstract class MainController {
             $this->container = $container;
             $this->model = $container->model;
             $this->view=$container->view;   
-            $this->uri = $this->getUri();   
+            $this->uri = $this->getUri();
+            $this->clientData = $container['dataClient'];
     }
 
     //Функция получения URL текущей страницы 

@@ -19,6 +19,7 @@
     ],
     "autoload": {
         	"psr-4": {
+                    "Core\\": "core",
                     "Wifi\\": "library/Wifi",
                     "Model\\": "model",
                     "Controller\\": "controller",

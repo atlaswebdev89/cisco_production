@@ -1,6 +1,6 @@
 <?php
 
-namespace Wifi;
+namespace Core\Router;
 
 class Router {
    
@@ -21,12 +21,10 @@ class Router {
                 $this->get('/reports/',     '\Controller\ReportsController:execute');
                 $this->get('/csv/',         '\Controller\ReportsController:csv');
 
-
                 //Редактирование данных пользователя и смена пароля
                 $this->get('/profileUser' ,                         '\Controller\ProfileUsersShowController:execute') ->setName('profile_user_show');
                 $this->map(['GET', 'POST'], '/profileUserEdit/',    '\Controller\ProfileUserController:execute')      ->setName('profile_user');
                 $this->map(['GET', 'POST'], '/profileUserPass/',    '\Controller\ProfileUserControllerPass:execute')  ->setName('profileUserPass');
-
 
                 //Поиск
                 $this->map(['GET', 'POST'], '/search/[page/{id}[/]]',              '\Controller\SearchController:execute')->setName('search');
@@ -58,8 +56,11 @@ class Router {
 
                 });
 
-         })->add('Wifi\Middleware:AuthLogin');
-
+         })->add('\Core\Middleware\Middleware:AuthLogin');
+          
+         $this->app->get('/testing/',     '\Controller\TestingController:execute2');
+         
+         
          $this->app->map(['GET', 'POST'], '/login[/]', '\Controller\LoginController:execute')->setName('login');
 
 

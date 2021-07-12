@@ -1,6 +1,6 @@
 <?php
 
-namespace Wifi;
+namespace Core\Middleware;
 
 class Middleware {
     
