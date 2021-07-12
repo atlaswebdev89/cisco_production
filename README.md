@@ -1,11 +1,11 @@
 # Wifi List Projects for Brest
 ## Веб-приложение для учета установленных точек CiscoWifi
 
-### Установка
+### Запуск приложения для разработки
 
-С помощью composer
-```php
-composer require atlas89/bitrix-createleads-api
+С помощью gulp. Собираем проект
+```js
+gulp build
 ```
 
 ### Использование
