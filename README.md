@@ -45,43 +45,9 @@ $client = new \atlasBitrixRestApi\ClientBitrix();
 ```
 
 
-Формируем массив данных для нового лида (обычно используются данные полей формы на сайте) 
 
-```php
-$data = [
-        "TITLE" => "Запрос с сайта",
-        "NAME" => "Дима",
-        "SECOND_NAME" =>"Петрович",
-        "LAST_NAME"=> "Смолов",
-        "CURRENCY_ID" => "USD",
-        "OPPORTUNITY" => 12500,
-        "PHONE" => [ 
-                        [ "VALUE" =>"+375111111111", "VALUE_TYPE" => "WORK"],
-                    ],
-        "EMAIL" => [
-                        ['VALUE' => "mail@yandex.by", 'VALUE_TYPE' => 'HOME'],
-                ],
-        "COMMENTS" => "ПРИВЕТ НОВЫЙ ЛИД",
-        "UTM_SOURCE" => "utm"
-    ];
-```
 
-Полный список полей доступен в официальной документации
 
-https://dev.1c-bitrix.ru/rest_help/crm/leads/crm_lead_fields.php
-
-Выполняем запрос на создание в битрикс24 нового лида
-
-```php
-$response = $client->createLead($data); 
-json_decode($response, true));
-```
-
-Ответ приходит в JSON. Необходимо обработать функцией json_decode
-
-Перед тем как добавить новый лид в crm bitrix24 происходит проверка на наличие контакты с указаными номером телефона
-и email адресом. Если контакт уже есть в bitrix24 то лид привязывается к существующему контакты и помечается в системе как 
-повторный.
 
 **Маска для проверки по номеру (для беларуси) должна соответствовать +375(99)999-99-99**
 
@@ -95,29 +61,6 @@ $client->setUriApi("crm.contact.list");
 $response=$client->getContacts();
 ```
 *****************
-**Получение списка контактов из битрикс24 используя фильтр**
 
-```php
-$filter_phone =[
-                            "filter" => [
-                                "PHONE" => "номер телефона",
-                            ],
-                            "select" => [
-                                "ID"
-                            ]
-                        ];
-$client->setUriApi("crm.contact.list");
-$response=$client->getContacts(filter_phone);
-```
-Полное описание в официальной документации
 
-https://dev.1c-bitrix.ru/rest_help/crm/contacts/crm_contact_list.php
-******************
 
-**Получение списка лидов из битрикс24**
-
-```php
-$client->setUriApi("crm.lead.list");
-$response=$client->getLeads();
-```
-*************
