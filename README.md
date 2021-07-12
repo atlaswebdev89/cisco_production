@@ -12,8 +12,8 @@ gulp build
 gulp 
 ```
 Запускаем docker контейнеры
-```linux
-gulp 
+```
+docker-composer up -d
 ```
 ### Использование
 *********************
