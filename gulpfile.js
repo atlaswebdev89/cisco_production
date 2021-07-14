@@ -108,7 +108,7 @@ gulp.task("images", function() {
 
 //Следить за изменениями в файлах
 gulp.task ("watcher", function () {
-    gulp.watch('app/**/*',   gulp.parallel('rsync'));
+    gulp.watch('app/core/**',   gulp.parallel('rsync-core'));
     gulp.watch('app/**/*.+(html|php|json|log)',   gulp.parallel('copy'));
     gulp.watch("app/vendor/**/*",  gulp.parallel('vendors'));
     gulp.watch("app/frontend/fonts/**/*",  gulp.parallel('fonts'));
