@@ -19,19 +19,13 @@ gulp.task("copy", function () {
 });
 
 //Синхронизация файлов (в случае удаления или перемещения в исходной папке)
-gulp.task("rsync", function () {
+gulp.task("rsync-core", function () {
     return gulp.src(
-                        "app/config/**",
-                        "app/controller/**",
-                        "app/core/**",
-                        "app/library/**",
-                        "app/interfaces/**",
-                        "app/model/**",
-                        { dot: true })
+                        "app/core/**")
     .pipe(rsync({
-                        root:'app/',
-                        destination: 'dist/',
-                        //exclude: ['sessions', 'extensions-front', 'frontend', 'templates', 'mysql_db'], // Excludes files from deploy
+                        root:'app/core/',
+                        destination: 'dist/core/',
+                        //exclude: ['extensions-front'], // Excludes files from deploy
                         archive: true,
                         silent: true,
                         compress: true,
@@ -142,7 +136,7 @@ gulp.task("default", gulp.parallel(
                                     "vendors", 
                                     "images",  
                                     "fonts",
-                                    "rsync",
+                                    "rsync-core",
                                     "css",
                                     "scripts", 
                                     "watcher"
