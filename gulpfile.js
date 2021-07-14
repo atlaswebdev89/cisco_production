@@ -20,16 +20,24 @@ gulp.task("copy", function () {
 
 //Синхронизация файлов (в случае удаления или перемещения в исходной папке)
 gulp.task("rsync", function () {
-    return gulp.src("app/**", { dot: true })
+    return gulp.src(
+                        "app/config/**",
+                        "app/controller/**",
+                        "app/core/**",
+                        "app/library/**",
+                        "app/interfaces/**",
+                        "app/model/**",
+                        { dot: true })
     .pipe(rsync({
-      root:'app/',
-      destination: 'dist/',
-      archive: true,
-      silent: true,
-      compress: true,
-      recursive: true,
-      delete:true,
-      clean:true
+                        root:'app/',
+                        destination: 'dist/',
+                        //exclude: ['sessions', 'extensions-front', 'frontend', 'templates', 'mysql_db'], // Excludes files from deploy
+                        archive: true,
+                        silent: true,
+                        compress: true,
+                        recursive: true,
+                        delete:true,
+                        clean:true
     }));
 });
 
@@ -53,7 +61,7 @@ gulp.task('fonts', function() {
 
 //Копируем папку для хранения сессий
 gulp.task('session', 
-    shell.task('mkdir dist/sessions &&chmod -R 777 dist/sessions')
+    shell.task('mkdir dist/sessions && chmod -R 777 dist/sessions')
 );
 
 // *************** CSS ******************************************************* 
