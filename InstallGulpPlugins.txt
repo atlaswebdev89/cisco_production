@@ -1,3 +1,6 @@
 npm install gulp --save-dev
 nmp init (создать package.json)
 npm i gulp-sass gulp-cssnano gulp-autoprefixer gulp-imagemin gulp-concat gulp-uglify gulp-rename del gulp-cache shell --save-dev
+
+//Для синхронизации локальной или удаленной с помощью rsync утилиты
+npm install gulp-rsync --save-dev

@@ -18,15 +18,14 @@ gulp.task("copy", function () {
             .pipe (gulp.dest("dist/"))
 });
 
-//Копирование файлов php html json log из папки app
+//Синхронизация файлов (в случае удаления или перемещения в исходной папке)
 gulp.task("rsync", function () {
     return gulp.src("app/**", { dot: true })
     .pipe(rsync({
       root:'app/',
       destination: 'dist/',
       archive: true,
-      progress:true,
-      silent: false,
+      silent: true,
       compress: true,
       recursive: true,
       delete:true,
@@ -107,6 +106,7 @@ gulp.task("images", function() {
 
 //Следить за изменениями в файлах
 gulp.task ("watcher", function () {
+    gulp.watch('app/**/*',   gulp.parallel('rsync'));
     gulp.watch('app/**/*.+(html|php|json|log)',   gulp.parallel('copy'));
     gulp.watch("app/vendor/**/*",  gulp.parallel('vendors'));
     gulp.watch("app/frontend/fonts/**/*",  gulp.parallel('fonts'));
@@ -134,6 +134,7 @@ gulp.task("default", gulp.parallel(
                                     "vendors", 
                                     "images",  
                                     "fonts",
+                                    "rsync",
                                     "css",
                                     "scripts", 
                                     "watcher"
