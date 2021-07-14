@@ -1,6 +1,7 @@
 <?php
 
 namespace Controller;
+use \Core\Controller\DisplayController;
 
 class ProfileUsersShowController extends DisplayController {
     

@@ -18,16 +18,17 @@ class Bootstrap {
                         //Register dataBase connection (PDO) Singleton
                         $container['pdo'] = function ($container) {
                                 $db = $container ['db'];
-                                $connect = \Model\ConnectDB::getInstance($db);
+                                $connect = \Core\Connect\ConnectDB::getInstance($db);
                             return $connect->getConnect();
                         };
 
                         //Model MVC
                         $container ['driver'] = function ($container) {
-                            return new \Model\DriverBD($container['pdo']);
+                            return new \Core\Drivers\DriverBD($container['pdo']);
                         };
+                        
                         $container ['model'] = function ($container) {
-                            return new \Model\Model($container['driver']);
+                            return new \Core\Model\Model($container['driver']);
                         };
 
                         //register AuthClass 

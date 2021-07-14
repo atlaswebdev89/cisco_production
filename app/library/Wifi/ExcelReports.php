@@ -3,7 +3,6 @@
 
 namespace Wifi;
 
-
 class ExcelReports
 {
     protected $model;

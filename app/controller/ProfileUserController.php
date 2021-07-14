@@ -2,7 +2,7 @@
 
 
 namespace Controller;
-
+use \Core\Controller\DisplayController;
 
 class ProfileUserController extends DisplayController
 {
