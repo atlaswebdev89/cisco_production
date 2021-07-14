@@ -10,7 +10,8 @@ var gulp = require('gulp'),
     rename = require("gulp-rename"); // Переименование файлов
 
 var shell = require("gulp-shell"); // Переименование файлов
-
+var rsync = require('gulp-rsync'); //Синхронизация папок и файлов
+//
 //Копирование файлов php html json log из папки app
 gulp.task("copy", function () {
     return gulp.src ("app/**/*.+(html|php|json|log|lock)")
@@ -18,9 +19,19 @@ gulp.task("copy", function () {
 });
 
 //Копирование файлов php html json log из папки app
-gulp.task("copy-mv", function () {
-    return gulp.src ("app/**/*")
-            .pipe (gulp.dest("dist/"))
+gulp.task("rsync", function () {
+    return gulp.src("app/**", { dot: true })
+    .pipe(rsync({
+      root:'app/',
+      destination: 'dist/',
+      archive: true,
+      progress:true,
+      silent: false,
+      compress: true,
+      recursive: true,
+      delete:true,
+      clean:true
+    }));
 });
 
 //Копирование htaccess с использованием дополнительнной опции dot:true
