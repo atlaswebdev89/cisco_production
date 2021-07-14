@@ -17,6 +17,12 @@ gulp.task("copy", function () {
             .pipe (gulp.dest("dist/"))
 });
 
+//Копирование файлов php html json log из папки app
+gulp.task("copy-mv", function () {
+    return gulp.src ("app/**/*")
+            .pipe (gulp.dest("dist/"))
+});
+
 //Копирование htaccess с использованием дополнительнной опции dot:true
 gulp.task("htaccess", function () {
     return gulp.src ("app/.htaccess", { dot: true })

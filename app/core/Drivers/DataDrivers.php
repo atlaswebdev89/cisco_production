@@ -12,7 +12,7 @@ class DataDrivers {
         $this->driverDB = $container['driver'];
     }
     
-    //Получение объекта модели для текущего контроллера
+    //Получение объекта модели для текущего контроллера (Reflection API PHP)
     public function addModelController ($controller) {
                 if(isset($controller) && !empty($controller)) {
                     $this->controller = $controller;

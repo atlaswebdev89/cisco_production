@@ -7,7 +7,7 @@
  */
 
 namespace Controller;
-
+use \Core\Controller\DisplayController;
 /**
  * Description of LoginController
  *
