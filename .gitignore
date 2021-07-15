@@ -2,3 +2,4 @@
 /dist
 /dist/sessions
 /node_modules
+package-lock.json
