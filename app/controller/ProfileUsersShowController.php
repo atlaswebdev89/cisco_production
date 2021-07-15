@@ -1,9 +1,8 @@
 <?php
 
 namespace Controller;
-use \Core\Controller\DisplayController;
 
-class ProfileUsersShowController extends DisplayController {
+class ProfileUsersShowController extends ProfileUserController {
     
     protected $UserData;
     

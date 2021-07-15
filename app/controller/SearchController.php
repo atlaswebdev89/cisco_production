@@ -19,6 +19,7 @@ class SearchController extends DisplayController
         parent::__construct($container);
         //Объект класса пагинации
         $this->pager = $container->pager;
+        $this->model=$this->addModelController(__CLASS__);
     }
 
     public function execute ($request, $response, $args) {

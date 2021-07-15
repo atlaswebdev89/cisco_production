@@ -7,7 +7,7 @@ class TestingController extends DisplayController {
     
     public function __construct($container) {
        parent::__construct($container);
-            $this->clientData->addModelController(__CLASS__);
+            $this->model=$this->addModelController(__CLASS__);
     }
     
     public function execute ($request, $response, $args) {

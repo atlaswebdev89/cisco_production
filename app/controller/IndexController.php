@@ -6,6 +6,11 @@ use \Core\Controller\DisplayController;
 class IndexController extends DisplayController {
     protected $count_point;
     protected $count_business;
+    
+    public function __construct($container) {
+        parent::__construct($container);
+        $this->model=$this->addModelController(__CLASS__);
+    }
     public function execute ($request, $response, $args) {
             return $this->display($request, $response, $args);
     }

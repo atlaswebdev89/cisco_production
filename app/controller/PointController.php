@@ -6,6 +6,11 @@ use \Core\Controller\DisplayController;
 class PointController extends DisplayController {
 
     protected $urlPointShow = '/point/show/id/';
+    
+    public function __construct($container) {
+       parent::__construct($container);
+        $this->model=$this->addModelController(__CLASS__);
+    }
 
     public function execute ($request, $response, $args) {
             return $this->display($request, $response, $args);

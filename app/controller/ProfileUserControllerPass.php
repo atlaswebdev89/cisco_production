@@ -1,10 +1,8 @@
 <?php
 
-
 namespace Controller;
-use \Core\Controller\DisplayController;
 
-class ProfileUserControllerPass extends DisplayController
+class ProfileUserControllerPass extends ProfileUserController
 {
     protected $urlRedirect = '/profileUser';
     public function execute ($request, $response, $args) {

@@ -8,7 +8,12 @@ class ProfileUserController extends DisplayController
 {
     protected $UserData;
     protected $urlRedirect = '/profileUser';
-
+    
+    public function __construct($container) {
+        parent::__construct($container);
+        $this->model=$this->addModelController(__CLASS__);
+    }
+    
     public function execute ($request, $response, $args) {
         
         //Получение POST запроса при редактировании точки

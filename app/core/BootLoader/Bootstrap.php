@@ -27,8 +27,9 @@ class Bootstrap {
                             return new \Core\Drivers\DriverBD($container['pdo']);
                         };
                         
+                        //Main Model для запросов к базе для нескольких контроллерах
                         $container ['model'] = function ($container) {
-                            return new \Core\Model\Model($container['driver']);
+                            return new \Core\Model\MainModel($container['driver']);
                         };
 
                         //register AuthClass 
