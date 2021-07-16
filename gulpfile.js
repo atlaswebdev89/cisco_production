@@ -39,7 +39,7 @@ gulp.task("rsync-core", function () {
 
 //Синхронизация проекта с хранилищем для докер контейнера
 gulp.task("rsync-docker", function () {
-    return gulp.src("dist/", { dot: true })
+    return gulp.src("dist/**/*", { dot: true })
         .pipe(rsync({
                         destination: '~/web/docker/dockerImagesCisco/',
                         //include: ['sessions'], // Excludes files from deploy
