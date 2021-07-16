@@ -6,7 +6,6 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 //Время жизни сесии в секундах
 ini_set('session.gc_maxlifetime', 1440);
-
 //Включение лога ошибок и указания файла для записи. Работает при выключенно внутреннем обработчике Slim
 ini_set('log_errors', 'On');
 ini_set('error_log', '/var/log/php/php_errors.log');
@@ -24,7 +23,6 @@ ini_set('error_log', '/var/log/php/php_errors.log');
 // Время жизни куки в секундах
 // 0 - по завершению текущего сеанса браузера (при закрытии браузера не всегда сеанс заканчивается. Зависит от браузера))
 ini_set('session.cookie_lifetime', 0);
-
 require_once 'vendor/autoload.php';
 require_once 'config/config.php';
 
