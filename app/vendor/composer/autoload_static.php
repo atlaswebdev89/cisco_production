@@ -150,6 +150,7 @@ class ComposerStaticInit928970c5d7e574af85a6e77fba8f465f
     );
 
     public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Controller\\BussinessController' => __DIR__ . '/../..' . '/controller/BussinessController.php',
         'Controller\\BussinessControllerAdd' => __DIR__ . '/../..' . '/controller/BussinessControllerAdd.php',
         'Controller\\BussinessControllerDelete' => __DIR__ . '/../..' . '/controller/BussinessControllerDelete.php',
@@ -182,6 +183,8 @@ class ComposerStaticInit928970c5d7e574af85a6e77fba8f465f
         'Core\\Controller\\MainController' => __DIR__ . '/../..' . '/core/Controller/MainController.php',
         'Core\\Drivers\\DataDrivers' => __DIR__ . '/../..' . '/core/Drivers/DataDrivers.php',
         'Core\\Drivers\\DriverBD' => __DIR__ . '/../..' . '/core/Drivers/DriverBD.php',
+        'Core\\Extensions\\Timer' => __DIR__ . '/../..' . '/core/Extensions/Timer.php',
+        'Core\\Extensions\\UsageMemory' => __DIR__ . '/../..' . '/core/Extensions/UsageMemory.php',
         'Core\\Middleware\\Middleware' => __DIR__ . '/../..' . '/core/Middleware/Middleware.php',
         'Core\\Model\\MainModel' => __DIR__ . '/../..' . '/core/Model/MainModel.php',
         'Core\\Router\\Router' => __DIR__ . '/../..' . '/core/Router/Router.php',
@@ -207,6 +210,11 @@ class ComposerStaticInit928970c5d7e574af85a6e77fba8f465f
         'Interop\\Container\\ContainerInterface' => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container/ContainerInterface.php',
         'Interop\\Container\\Exception\\ContainerException' => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container/Exception/ContainerException.php',
         'Interop\\Container\\Exception\\NotFoundException' => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container/Exception/NotFoundException.php',
+        'Model\\BussinessModel' => __DIR__ . '/../..' . '/model/BussinessModel.php',
+        'Model\\IndexModel' => __DIR__ . '/../..' . '/model/IndexModel.php',
+        'Model\\PointModel' => __DIR__ . '/../..' . '/model/PointModel.php',
+        'Model\\ProfileUserModel' => __DIR__ . '/../..' . '/model/ProfileUserModel.php',
+        'Model\\SearchModel' => __DIR__ . '/../..' . '/model/SearchModel.php',
         'Model\\TestingModel' => __DIR__ . '/../..' . '/model/TestingModel.php',
         'Monolog\\ErrorHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/ErrorHandler.php',
         'Monolog\\Formatter\\ChromePHPFormatter' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Formatter/ChromePHPFormatter.php',
@@ -342,7 +350,6 @@ class ComposerStaticInit928970c5d7e574af85a6e77fba8f465f
         'Psr\\Log\\LoggerInterface' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerInterface.php',
         'Psr\\Log\\LoggerTrait' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerTrait.php',
         'Psr\\Log\\NullLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/NullLogger.php',
-        'Psr\\Log\\Test\\DummyTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
         'Psr\\Log\\Test\\LoggerInterfaceTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
         'Psr\\Log\\Test\\TestLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/TestLogger.php',
         'Slim\\App' => __DIR__ . '/..' . '/slim/slim/Slim/App.php',

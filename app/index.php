@@ -28,8 +28,10 @@ ini_set('session.cookie_lifetime', 0);
 require_once 'vendor/autoload.php';
 require_once 'config/config.php';
 
+//Количество затраченной памяти 
+\Core\Extensions\UsageMemory::start();
 //Время формирования страницы и размер использованной памяти
-Wifi\TimePage::start();
+$time_load_page = \Core\Extensions\Timer::getInstanse('start');
 
 $config = [
     'settings' => [
@@ -51,7 +53,6 @@ $config = [
 session_start(); //Start Session 
 
 $app = new \Slim\App($config);
-
 $container = \Core\BootLoader\Bootstrap::registerDI($app);
 
 // Отключение обработчика ошибок Slim и включение стандартного обработчика PHP

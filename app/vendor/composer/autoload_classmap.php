@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'Controller\\BussinessController' => $baseDir . '/controller/BussinessController.php',
     'Controller\\BussinessControllerAdd' => $baseDir . '/controller/BussinessControllerAdd.php',
     'Controller\\BussinessControllerDelete' => $baseDir . '/controller/BussinessControllerDelete.php',
@@ -38,6 +39,8 @@ return array(
     'Core\\Controller\\MainController' => $baseDir . '/core/Controller/MainController.php',
     'Core\\Drivers\\DataDrivers' => $baseDir . '/core/Drivers/DataDrivers.php',
     'Core\\Drivers\\DriverBD' => $baseDir . '/core/Drivers/DriverBD.php',
+    'Core\\Extensions\\Timer' => $baseDir . '/core/Extensions/Timer.php',
+    'Core\\Extensions\\UsageMemory' => $baseDir . '/core/Extensions/UsageMemory.php',
     'Core\\Middleware\\Middleware' => $baseDir . '/core/Middleware/Middleware.php',
     'Core\\Model\\MainModel' => $baseDir . '/core/Model/MainModel.php',
     'Core\\Router\\Router' => $baseDir . '/core/Router/Router.php',
@@ -63,6 +66,11 @@ return array(
     'Interop\\Container\\ContainerInterface' => $vendorDir . '/container-interop/container-interop/src/Interop/Container/ContainerInterface.php',
     'Interop\\Container\\Exception\\ContainerException' => $vendorDir . '/container-interop/container-interop/src/Interop/Container/Exception/ContainerException.php',
     'Interop\\Container\\Exception\\NotFoundException' => $vendorDir . '/container-interop/container-interop/src/Interop/Container/Exception/NotFoundException.php',
+    'Model\\BussinessModel' => $baseDir . '/model/BussinessModel.php',
+    'Model\\IndexModel' => $baseDir . '/model/IndexModel.php',
+    'Model\\PointModel' => $baseDir . '/model/PointModel.php',
+    'Model\\ProfileUserModel' => $baseDir . '/model/ProfileUserModel.php',
+    'Model\\SearchModel' => $baseDir . '/model/SearchModel.php',
     'Model\\TestingModel' => $baseDir . '/model/TestingModel.php',
     'Monolog\\ErrorHandler' => $vendorDir . '/monolog/monolog/src/Monolog/ErrorHandler.php',
     'Monolog\\Formatter\\ChromePHPFormatter' => $vendorDir . '/monolog/monolog/src/Monolog/Formatter/ChromePHPFormatter.php',
@@ -198,7 +206,6 @@ return array(
     'Psr\\Log\\LoggerInterface' => $vendorDir . '/psr/log/Psr/Log/LoggerInterface.php',
     'Psr\\Log\\LoggerTrait' => $vendorDir . '/psr/log/Psr/Log/LoggerTrait.php',
     'Psr\\Log\\NullLogger' => $vendorDir . '/psr/log/Psr/Log/NullLogger.php',
-    'Psr\\Log\\Test\\DummyTest' => $vendorDir . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
     'Psr\\Log\\Test\\LoggerInterfaceTest' => $vendorDir . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
     'Psr\\Log\\Test\\TestLogger' => $vendorDir . '/psr/log/Psr/Log/Test/TestLogger.php',
     'Slim\\App' => $vendorDir . '/slim/slim/Slim/App.php',
