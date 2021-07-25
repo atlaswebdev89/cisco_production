@@ -555,3 +555,7 @@ h4 {
 	border-top-right-radius: 3px;
 	border-bottom-right-radius: 3px;
 }
+
+.pl-25 {
+   padding-left: 35px; 
+}

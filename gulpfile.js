@@ -156,6 +156,7 @@ gulp.task ("watcher", function () {
     gulp.watch("app/frontend/css/**/*.css", gulp.parallel("css"));
     gulp.watch("app/extensions-front/**/*.+(css)", gulp.parallel("copy-css-ext"));
     gulp.watch("app/templates/js/**/*.js", gulp.parallel("scripts"));
+    gulp.watch("app/extensions-front/**/*.js", gulp.parallel("copy-js-ext"));
 });
 
 //Для удаления папки dist перед сборкой

@@ -55,7 +55,7 @@ class Bootstrap {
 
                         //Register component on container (Подключение twig-slim шаблонизатора)
                         $container['view'] = function ($container) {
-                                $view = new \Slim\Views\Twig('templates');     
+                                $view = new \Slim\Views\Twig('templates', ['debug' => true,]);     
                             return $view;
                         };
 
@@ -83,12 +83,15 @@ class Bootstrap {
                           return new \Wifi\Pager($container['driver']);
                         };
 
-
-                        //Класс для формирование отчетов
+                        //Класс для формирование отчетов (phpexcel)
                         $container['reports'] = function ($container){
                             return new \Wifi\ExcelReports($container['model']);
                         };
                         
+                        //Класс для работы с Yandex Disk
+                        $container['yandexDisk'] = function ($container){
+                            return new \Wifi\YandexStorage($container);
+                        };
                         
                         //Посредник выполнения запросов в модель
                         $container['dataClient']=  function ($container){

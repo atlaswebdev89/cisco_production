@@ -55,10 +55,14 @@ class Router {
                    $this->post('/search[/]',                        '\Controller\PointControllerSearch:execute' )   ->setName('points_search');
 
                 });
+                $this->get('/storage/',                 '\Controller\YandexStorageController:execute')->setName ('storage');
+                $this->post('/storage/getResourse/',     '\Controller\YandexStorageController:getResourseAjax')->setName ('storageAjax');
 
          })->add('\Core\Middleware\Middleware:AuthLogin');
           
          $this->app->get('/testing/',     '\Controller\TestingController:execute2');
+         
+         
          
          
          $this->app->map(['GET', 'POST'], '/login[/]', '\Controller\LoginController:execute')->setName('login');
