@@ -556,6 +556,15 @@ h4 {
 	border-bottom-right-radius: 3px;
 }
 
+
+
 .pl-25 {
    padding-left: 35px; 
+}
+
+.arrow-collapse.menu-expand {
+    cursor: pointer;
+}
+.arrow-collapse.active {
+    color:#64ff64;
 }
