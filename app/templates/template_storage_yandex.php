@@ -10,7 +10,7 @@
                                                     <ul class="diskYandex">
                                                         {% for data in listDisk %}
                                                          <li>
-                                                             <span class = "arrow-collapse  menu-expand"  data-path ="{{data.path}}" data-type = "{{data.type}}">
+                                                             <span id = {{data.resourse_id}} class = "arrow-collapse  menu-expand"  data-path ="{{data.path}}" data-type = "{{data.type}}">
                                                                  {% if data.type == 'dir'%}
                                                                     <i class="icon-folder2"></i>
                                                                  {% elseif data.type == 'file' %}
@@ -19,10 +19,10 @@
                                                                     {{data.name}}
                                                              </span>
                                                              
-                                                             <span class="text-right"> ({{data.date}})</span>
+                                                             <span class="text-right"> ({{data.date}} | {{data.time}})</span>
 
                                                              {% if data.type == 'dir'%}
-                                                             <ul class="collapse pl-25"></ul>
+                                                             <ul class="collapse pl-25" ></ul>
                                                              {% endif %}
                                                          </li>
                                                          {% endfor %}
