@@ -21,16 +21,28 @@
                                                                            {{data.name}}
                                                                     </span>
                                                                 </div>
-                                                                <div class="col-md-3">
-                                                                    <span class="control-panel">
-                                                                        <i class="icon-download2"></i>
-                                                                        <i class="icon-upload2"></i>
-                                                                        <i class="icon-delete"></i>
-                                                                        <i class="icon-box-add"></i>
-                                                                        <i class="icon-loading"></i>
-                                                                        <i class="icon-tag"></i>
-                                                                    </span>
-                                                                </div>
+                                                                {% if data.type == 'dir' %}
+                                                                    <div class="col-md-3">
+                                                                        <span class="control-panel dir">
+                                                                            <i class="icon-download2" data-title="Скачать"></i>
+                                                                            <i class="icon-upload2" data-title="Загрузить"></i>
+                                                                            <i class="icon-delete" data-title="Удалить"></i>
+                                                                            <i class="icon-box-add" data-title="Создать папку"></i>
+                                                                            <i class="icon-loading" data-title="Обновить"></i>
+                                                                            <i class="icon-tag" data-title="Переименовать"></i>
+                                                                        </span>
+                                                                    </div>
+                                                                {% else %}
+                                                                    <div class="col-md-3">
+                                                                        <span class="control-panel file">
+                                                                            <i class="icon-download2" data-title="Скачать"></i>
+                                                                            <i class="icon-upload2" data-title="Загрузить"></i>
+                                                                            <i class="icon-delete" data-title="Удалить"></i>
+                                                                            <i class="icon-tag" data-title="Переименовать"></i>
+                                                                        </span>
+                                                                    </div>
+                                                                {% endif %}
+                                                                
                                                                 <div class="col-md-3 text-right">
                                                                     <span>
                                                                        {{data.time}} | {{data.date}} 
@@ -41,9 +53,7 @@
                                                             {% if data.type == 'dir'%}
                                                                 <div class="row dynamic">
                                                                     <div class="col-md-12">
-                                                                        <ul class="collapse pl-25">
-                                                                               
-                                                                        </ul>
+                                                                        <ul class="collapse pl-25"></ul>
                                                                     </div>
                                                                 </div>   
                                                             {% endif %}

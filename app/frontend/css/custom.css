@@ -560,35 +560,3 @@ h4 {
 
 
 
-
-.pl-25 {
-   padding-top: 15px; 
-   padding-bottom: 15px;
-   padding-left: 20px
-}
-
-.arrow-collapse.menu-expand {
-    cursor: pointer;
-}
-.arrow-collapse.active {
-    color:#64ff64;
-}
-.no-gutter-padding-r {
-    padding-right: 0;
-}
-
-.diskYandex .collapse li:not(:last-child) {
-    border-bottom: 1px solid silver;
-}
-.diskYandex>li:not(:last-child) {
-    border-bottom: 1px solid silver;
-}
-.diskYandex {
-    font-size: 18px;
-}
-
-@media(max-width:576px) {
-    div.col-md-3 {
-        text-align: left;
-    }
-}

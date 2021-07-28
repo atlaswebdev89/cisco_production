@@ -5,8 +5,14 @@
     //Счетчик для ограничения ajax запросов
     var count = 3;
     var path = '';
-    var controlls = $('.control-panel').parent().html();
-    //Для динамических элементов страницы (добавленных черех ajax или append)
+    var controlls = $('.control-panel.dir').parent().html();
+    //Для файлов убираем ненужные элементы управления 
+    $('.control-panel.dir').find('i').each(function(e) {
+        
+    })
+    var controlls_file = $('.control-panel').parent().html();
+    //
+//Для динамических элементов страницы (добавленных черех ajax или append)
     //используем делегированную обработку событий
     $('.diskYandex').on('click', "span.arrow-collapse", function (e) {
         var elemClick = $(this).attr('id');
@@ -26,7 +32,7 @@
                             if (elem.data("type") == "dir" && count != 0 && path != elem.data('path')) {
                                 path = elem.data('path');
                                     count--;
-                                 ajaxDataTransfer('path=' + elem.data('path'), elem, collapse, controlls);
+                                 ajaxDataTransfer('path=' + elem.data('path'), elem, collapse, controlls, controlls_file);
                              } 
                     }
 
@@ -37,7 +43,7 @@
             })
     });         
   /* jquery function transmission data on form*/
-  function ajaxDataTransfer (path, elem, collapse, controlls) {
+  function ajaxDataTransfer (path, elem, collapse, controlls, controlls_file) {
         $.ajax ({
             type: 'POST',
             url:uri,
@@ -61,7 +67,7 @@
                                                         collapse.append("<li><div class='row no-pad static'><div class='col-md-6 text-left'><span id='"+value.resourse_id +"' class = 'arrow-collapse  menu-expand'  data-path ='"+value.path+"' data-type = '"+value.type+"'>" +icon+ " "  +value.name+"</span></div><div class='col-md-3'>"+controlls+"</div><div class='col-md-3 text-right'><span >  " +value.date+" | "+ value.time+"</span></div></div>"+divList+"</li>");
                                                 }else if (value.type == "file") {
                                                     var icon = "<i class='icon-files'></i>";
-                                                        collapse.append("<li><div class='row no-pad static'><div class='col-md-6 text-left'><span id='"+value.resourse_id +"' class = 'arrow-collapse collapsed menu-expand'  data-path ='"+value.path+"' data-type = '"+value.type+"'>" +icon+ " "  +value.name+"</span></div><div class='col-md-3'>"+controlls+"</div><div class='col-md-3 text-right'><span class='text-right'>  " +value.date+" | "+ value.time+"</span></div></div></li>");
+                                                        collapse.append("<li><div class='row no-pad static'><div class='col-md-6 text-left'><span id='"+value.resourse_id +"' class = 'arrow-collapse collapsed menu-expand'  data-path ='"+value.path+"' data-type = '"+value.type+"'>" +icon+ " "  +value.name+"</span></div><div class='col-md-3'>"+controlls_file+"</div><div class='col-md-3 text-right'><span class='text-right'>  " +value.date+" | "+ value.time+"</span></div></div></li>");
                                                 }
                                     })
                                 collapse.collapse('show');

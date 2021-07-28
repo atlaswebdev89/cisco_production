@@ -1,0 +1,55 @@
+/*
+Yandex Storage styles
+*/
+
+.pl-25 {
+   padding-top: 15px; 
+   padding-bottom: 15px;
+   padding-left: 20px
+}
+
+.arrow-collapse.menu-expand {
+    cursor: pointer;
+}
+.arrow-collapse.active {
+    color:#64ff64;
+}
+.no-gutter-padding-r {
+    padding-right: 0;
+}
+
+.diskYandex .collapse li:not(:last-child) {
+    border-bottom: 1px solid silver;
+}
+.diskYandex>li:not(:last-child) {
+    border-bottom: 1px solid silver;
+}
+.diskYandex {
+    font-size: 18px;
+}
+
+@media(max-width:576px) {
+    div.col-md-3 {
+        text-align: left;
+    }
+}
+
+.control-panel i:after {
+    content: attr(data-title);
+    display: none;
+    position: absolute;
+    bottom: 120%;
+    left: 10%;
+    background-color: #fff;
+    color: #01cccc;
+    padding: 5px;
+    text-align: center;
+    -moz-box-shadow: 0 1px 1px rgba(0,0,0,.16);
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.16);
+    box-shadow: 0 1px 1px rgba(0,0,0,.16);
+    border-radius: 4px;
+    font-size: 16px;
+}
+.control-panel i:hover:after {
+    display: block;
+}
