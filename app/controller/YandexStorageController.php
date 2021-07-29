@@ -8,7 +8,7 @@ use Arhitector\Yandex\Client\Exception\UnauthorizedException;
 
 class YandexStorageController extends DisplayController{
     
-    public $disk;
+    public $yandexDisk;
     
     public function __construct($container) {
        parent::__construct($container);
@@ -47,7 +47,7 @@ class YandexStorageController extends DisplayController{
             }
 
             catch (NotFoundException $exc) {
-                echo $exc->getMessage() ." ". $exc->getCode();
+                echo $exc->getMessage() ." ". $exc->getCode(); exit();
             }
     }
 
@@ -63,29 +63,10 @@ class YandexStorageController extends DisplayController{
     //Получить необходимые скрипы для отображения страницы
     protected function getScripts () {
         return [
-            '/js/getResourseDisk.js'
+            '/js/storageFuncAPI.js',
+            '/js/errorStorageApiHandler.js',
+            '/js/getResourseDisk.js',
+            '/js/getUpdate.js',
         ];
-    }
-    
-    public function getResourseAjax ($request, $response, $args) {
-        if ($request->isPost()) {
-            $posts_data = $request->getParsedBody();
-                $resource = $this->api_ya_get_files($posts_data['path']);
-                
-                if (is_array($resource) && !empty($resource)) {
-                        $data = [
-                           'status' => true,
-                           'data' => $resource
-                       ];
-                    return json_encode($data);
-                }elseif(empty ($resource)){
-                    $data = [
-                           'status' => false,
-                           'data' => $resource
-                       ];
-                    return json_encode($data);
-                }
-                
-        }
     }
 }

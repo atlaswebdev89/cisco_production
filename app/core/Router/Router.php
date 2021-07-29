@@ -56,7 +56,7 @@ class Router {
 
                 });
                 $this->get('/storage/',                 '\Controller\YandexStorageController:execute')->setName ('storage');
-                $this->post('/storage/getResourse/',     '\Controller\YandexStorageController:getResourseAjax')->setName ('storageAjax');
+                $this->post('/storage/getResourse/',     '\Controller\YandexStorageRestApi:getResourse')->setName ('storageAjax');
 
          })->add('\Core\Middleware\Middleware:AuthLogin');
           

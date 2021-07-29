@@ -2,6 +2,12 @@
 Yandex Storage styles
 */
 
+.diskYandex .row.static:hover {
+    background-color:  blueviolet;
+}
+.ajax-loader {
+    color: #ff6060;
+}
 .pl-25 {
    padding-top: 15px; 
    padding-bottom: 15px;
@@ -52,4 +58,16 @@ Yandex Storage styles
 }
 .control-panel i:hover:after {
     display: block;
+}
+i.controlls {
+    cursor: pointer;
+}
+.arrow-collapse[data-type='dir'] {
+    
+}
+.arrow-collapse[data-type='file'] {
+    color: #86e1ff;
+}
+.request-empty {
+    color:#ff9595;
 }
