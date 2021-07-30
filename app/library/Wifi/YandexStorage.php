@@ -14,7 +14,7 @@ class YandexStorage {
     
     //Создание объекта для работы с api Yandex Disk 
     //Токен JWT можно передать сразу в конструкторе
-    protected function createConnect ($token = null) {
+    protected function createConnect ($token = 'AQAAAABAhrrGAAdD66Oq0PGZhEsjriIcdHbebeU') {
         $this->disk = new Disk($token);
     }
     

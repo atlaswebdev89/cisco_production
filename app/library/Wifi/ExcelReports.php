@@ -8,6 +8,9 @@ class ExcelReports
     protected $model;
     protected $ArrayData = [];
     protected $garant;
+    
+    public $pathFile_report = "temp/reportsPoints.xls";
+    
     public function __construct($model)
     {
         $this->model = $model;
@@ -166,19 +169,14 @@ class ExcelReports
             
             //Сохранение Excel документа 
             $objWriter = \PHPExcel_IOFactory::createWriter($xls, 'Excel5');
-            $objWriter->save(TEMP.'temp/file.xlsx');
-/*
-            return $response
-                            ->withHeader('Content-Description', 'File Transfer')
-                            ->withHeader('Content-Type', 'application/octet-stream')
-                            ->withHeader('Accept-Ranges', 'bytes')
-                            ->withHeader('Content-Transfer-Encoding', 'binary')
-                            ->withHeader('Expires', '0')
-                            ->withHeader('Cache-Control', 'must-revalidate')
-                            ->withHeader('Pragma', 'public')
-                            //->withHeader('Content-Length', '1215152')
-                            ->withHeader('Content-Disposition', 'attachment; filename=wifiReport.xls');
-*/
+            
+            $objWriter->save(TEMP.$this->pathFile_report);
+            
+            if(file_exists(TEMP.$this->pathFile_report)) {
+                return TEMP.$this->pathFile_report;
+            }else {
+                return FALSE;
+            }
         }
 
         public function getCsv ($request, $response, $args) {

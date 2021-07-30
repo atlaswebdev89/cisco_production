@@ -17,8 +17,6 @@ class YandexStorageRestApi extends RestApiController {
     protected function api_request ($method,  $params) {
         
             try {   
-                        //Получаем токен и передаем клиенту (объекту) для работы с yandex disk
-                        $this->model->setToken('AQAAAABAhrrGAAdD66Oq0PGZhEsjriIcdHbebeU');
                     return $resource = $this->model->$method($params);
             }
             catch (UnauthorizedException $exc) {
@@ -33,7 +31,6 @@ class YandexStorageRestApi extends RestApiController {
     }
     
     public function getResourse ($request, $response, $args) {
-       
         if ($request->isPost()) {
             $posts_data = $request->getParsedBody();
                 $resource = $this->api_request('getResource', $posts_data['path']);

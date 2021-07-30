@@ -11,17 +11,6 @@ class YandexStorageRestApiModel  {
         $this->disk=$container->yandexDisk->getConnect(); 
     }
     
-   
-    //Добавление токена 
-    public function setToken ($token) {
-        $this->disk->setAccessToken($token);
-    }
-    
-    //Получение объекта для работы с API
-    public function getConnect () {
-        return $this->disk;
-    }
-    
     //Функция получения списка отчетов на странице отчеты
     public function getResource (string $path = null) {
         if (!isset ($path) && empty($path)) {

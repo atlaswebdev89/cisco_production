@@ -38,8 +38,6 @@ class YandexStorageController extends DisplayController{
     protected function api_ya_get_files ($path =null) {
         
             try {   
-                        //Получаем токен и передаем клиенту (объекту) для работы с yandex disk
-                        $this->yandexDisk->setToken('AQAAAABAhrrGAAdD66Oq0PGZhEsjriIcdHbebeU');
                     return $resource = $this->yandexDisk->getResource($path);
             }
             catch(UnauthorizedException $exc) {
