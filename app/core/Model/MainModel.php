@@ -277,4 +277,12 @@ public function getBussinessavailable () {
         $result = $this->driver->query($sql, $type);
         return $result;
     }
+    
+     //Получение организаций сохраненных в БД
+ public function getBusinessForSelect () {
+     $type = 'arraydata'; 
+     $sql = "SELECT * FROM `".PREF."business`";
+     $result = $this->driver->query($sql, $type);
+     return $result;
+ }
 }

@@ -166,8 +166,8 @@ class ExcelReports
             
             //Сохранение Excel документа 
             $objWriter = \PHPExcel_IOFactory::createWriter($xls, 'Excel5');
-            $objWriter->save('php://output');
-
+            $objWriter->save(TEMP.'temp/file.xlsx');
+/*
             return $response
                             ->withHeader('Content-Description', 'File Transfer')
                             ->withHeader('Content-Type', 'application/octet-stream')
@@ -178,7 +178,7 @@ class ExcelReports
                             ->withHeader('Pragma', 'public')
                             //->withHeader('Content-Length', '1215152')
                             ->withHeader('Content-Disposition', 'attachment; filename=wifiReport.xls');
-
+*/
         }
 
         public function getCsv ($request, $response, $args) {

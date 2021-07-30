@@ -52,5 +52,9 @@ class YandexStorage {
                             } 
                 return $listDisk;
     }
+    
+    public function getResourceObj ($path) {
+        return $this->disk->getResource($path);
+    }
    
 }

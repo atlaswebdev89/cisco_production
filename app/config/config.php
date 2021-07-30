@@ -13,6 +13,8 @@ define('INTERVAL_ONLINE', 1440);
 
 define('SALT_SESSION', '123fseQfdfOi34gfvbBA');
 
+//Временная папка
+define('TEMP', '/var/www/html/');
 
 //Pagination
 //Количество точек на странице

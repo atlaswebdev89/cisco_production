@@ -7,8 +7,10 @@ use \Core\Controller\DisplayController;
 class ReportsController extends DisplayController
 {
     protected $report;
+    protected $path = 'disk:/Отчеты/Показатели качества сети CIscoWifi/new.xlsx';
     public function __construct($container) {
         $this->report = $container->reports;
+        $this->yandex = $container->yandexDisk;
     }
 
     public function csv ($request, $response, $args){
@@ -16,9 +18,17 @@ class ReportsController extends DisplayController
     }
 
     public function execute ($request, $response, $args) {
-
-        return $this->report->getExcel($request, $response, $args);
-
+            $this->yandex->setToken('AQAAAABAhrrGAAdD66Oq0PGZhEsjriIcdHbebeU');
+         $resourse = $this->yandex->getResourceObj($this->path); 
+         echo $resourse->hasProperty('name');
+         
+                $this->report->getExcel($request, $response, $args);
+             $resourse->upload(TEMP.'temp/file.xlsx', true);
+             // файл загружен, вывести информацию.
+            var_dump($resourse->toArray());
+        
+        
+         
 
 
         exit;
