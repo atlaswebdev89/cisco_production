@@ -26,3 +26,10 @@
         <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
     <!--сustom scripts -->
         <link href="https://fonts.googleapis.com/css?family=Amatic+SC&display=swap" rel="stylesheet">
+        
+        <!-- Скрипт уведомлений -->
+            <link rel="stylesheet" href="/css/noty.css">
+            <link rel="stylesheet" href="/css/sunset.css" >
+        
+        
+

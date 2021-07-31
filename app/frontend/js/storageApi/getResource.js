@@ -1,0 +1,82 @@
+//Счетчик для ограничения ajax запросов
+var count_ajax = 3;
+var controlls = {
+       download:'icon-download2',
+       upload:'icon-upload2',
+    };
+    
+var controlls = $('.control-panel.dir').parent().html();
+var controlls_file = controlls;
+
+(function($){
+    "use strict";
+        var uri = '/storage/getResourse/';
+        var path = '';
+    //Для динамических элементов страницы (добавленных черех ajax или append)
+    //используем делегированную обработку событий
+    $('.diskYandex').on('click', "span.arrow-collapse", function (e) {
+       
+        var elemClick = $(this).attr('id');
+        var elem = $(this);
+        var icon = $(this).find('i');
+        var collapse = elem.closest('li').children('.dynamic').children('div').children('.collapse');      
+         
+            if($(this).hasClass('active')) {
+                        elem.removeClass('active');
+                    icon.removeClass().addClass('icon-folder2');
+                }
+            
+            collapse.each(function (e) {
+                    if($(this).find('li').length > 0) {
+                            $(this).collapse('toggle');
+                    }else {
+                            if (elem.data("type") == "dir" && count_ajax != 0 && path != elem.data('path')) {
+                                path = elem.data('path');
+                                    count_ajax--;
+                                 ajaxDataRequest(uri, 'path=' + elem.data('path'), elem, getResourceCallback, beforeSendCallback);
+                             } 
+                    }
+
+                    $(this).on('show.bs.collapse', function (e) {
+                                elem.first().addClass('active');
+                            icon.removeClass().addClass('icon-folder-open');
+                          })
+            });
+            
+        //Функция до обработчика    
+        function beforeSendCallback () {
+            elem.append('  <i class="ajax-loader icon-loading"></i>');
+        }    
+        //Функиця обработчик результатов ajax запроса
+        function getResourceCallback(data) {
+             elem.find('.ajax-loader').remove();
+                if(data) {
+                    if(data.status == true){
+                            //Очистка елемента
+                            collapse.empty();
+                                    $.each(data.data, function (index, value){
+                                        if(value.type == "dir") {
+                                                    var divList = "<div class='row dynamic'><div class='col-md-12'><ul class='collapse pl-25'></ul></div></div>";
+                                                    var icon = "<i class='icon-folder2'></i>";
+                                                        collapse.append("<li><div class='row no-pad static'><div class='col-md-6 text-left'><span id='"+value.resourse_id +"' class = 'arrow-collapse  menu-expand'  data-path ='"+value.path+"' data-type = '"+value.type+"'>" +icon+ " "  +value.name+"</span></div><div class='col-md-3'>"+controlls+"</div><div class='col-md-3 text-right'><span >  "+ value.time+"  | " +value.date+"</span></div></div>"+divList+"</li>");
+                                                }else if (value.type == "file") {
+                                                    var icon = "<i class='icon-files'></i>";
+                                                        collapse.append("<li><div class='row no-pad static'><div class='col-md-6 text-left'><span id='"+value.resourse_id +"' class = 'arrow-collapse collapsed menu-expand'  data-path ='"+value.path+"' data-type = '"+value.type+"'>" +icon+ " "  +value.name+"</span></div><div class='col-md-3'>"+controlls_file+"</div><div class='col-md-3 text-right'><span class='text-right'>  "+ value.time+"  | " +value.date+"</span></div></div></li>");
+                                                }
+                                    })
+                                collapse.collapse('show');
+                            count_ajax = 3;
+                    }else if (data.status == 'empty') {
+                                    collapse.empty().append("<li class='request-empty'><i class='icon-file-empty2'></i> Папка пустая...</li>");
+                                collapse.collapse('show');
+                            count_ajax = 3;
+                    }else if (data.status == 'error') {
+                        errorApiHandler(data.data);
+                    }
+                }
+        } 
+    });
+    
+    
+})(jQuery);
+

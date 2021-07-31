@@ -20,14 +20,19 @@ class YandexStorageRestApi extends RestApiController {
                     return $resource = $this->model->$method($params);
             }
             catch (UnauthorizedException $exc) {
-                    echo  $this->sendData(['status' => 'error', 'data' => [$exc->getCode(), $exc->getMessage()]]);
+                    echo  $this->sendData(['status' => 'error', 'data' => ['code'=>$exc->getCode(), 'message'=> $exc->getMessage()]]);
                 die();
             }
 
             catch (NotFoundException $exc) {
-                    echo  $this->sendData(['status' => 'error', 'data' => [$exc->getCode(), $exc->getMessage()]]);
+                    echo  $this->sendData(['status' => 'error', 'data' => ['code'=>$exc->getCode(), 'message'=> $exc->getMessage()]]);
                 die();
             }
+            catch (\MyException\ErrorYandexApi $exc) {
+                    echo  $this->sendData(['status' => 'error', 'data' => ['code'=>$exc->getCode(), 'message'=> $exc->getMessage()]]);
+                die();
+            }
+            
     }
     
     public function getResourse ($request, $response, $args) {
@@ -40,6 +45,25 @@ class YandexStorageRestApi extends RestApiController {
                     return $this->sendData(['status' => 'empty','data' => $resource]);
                 }
         }
+    }
+    
+    public function deleteResourse ($request, $response, $args) {
+       if ($request->isPost()) {
+            $posts_data = $request->getParsedBody();
+                if($this->api_request('deleteResource', $posts_data['path'])){
+                    return $this->sendData(['status' => true]);
+                };
+       }
+    }
+    
+    //Функция download ресурса
+    public function downloadResourse ($request, $response, $args) {
+        if ($request->isPost()) {
+            $posts_data = $request->getParsedBody();
+                if($this->api_request('downloadResourse', $posts_data['path'])){
+                    return $this->sendData(['status' => true]);
+                };
+       }
     }
     
     //Функция отправки данных

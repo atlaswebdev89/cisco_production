@@ -12,7 +12,7 @@ class YandexStorageController extends DisplayController{
     
     public function __construct($container) {
        parent::__construct($container);
-            $this->model=$this->addModelController(__CLASS__);
+           // $this->model=$this->addModelController(__CLASS__);
             $this->yandexDisk = $container->yandexDisk; 
     }
     
@@ -27,8 +27,6 @@ class YandexStorageController extends DisplayController{
     protected function display($request, $response, $args) {
         
             $this->yandexList = $this->api_ya_get_files();
-            //Подключение необходимых скриптов
-            $this->page_script = $this->getScripts();
             //Формирование разрешения для отображения блоков в зависимости от роли
             $this->getBlockShowRole();
             $this->mainbar = $this->mainBar();
@@ -56,15 +54,5 @@ class YandexStorageController extends DisplayController{
                                             'show_block_moderator'  => $this->showBlockmoderator,
                                             'listDisk'              => $this->yandexList,
                                         ]);       
-    }
-    
-    //Получить необходимые скрипы для отображения страницы
-    protected function getScripts () {
-        return [
-            '/js/storageFuncAPI.js',
-            '/js/errorStorageApiHandler.js',
-            '/js/getResourseDisk.js',
-            '/js/getUpdate.js',
-        ];
     }
 }

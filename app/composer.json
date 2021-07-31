@@ -24,7 +24,8 @@
                     "Wifi\\": "library/Wifi",
                     "Model\\": "model",
                     "Controller\\": "controller",
-                    "Interfaces\\": "interfaces"
+                    "Interfaces\\": "interfaces",
+                    "MyException\\":"core/Exceptions"
                 	}
        }
 }

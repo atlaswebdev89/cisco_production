@@ -35,4 +35,31 @@ class YandexStorageRestApiModel  {
                             } 
                 return $listDisk;
     }
+    
+    //Функция удаления ресурса
+    public function deleteResource (string $path = null) {
+        if(!$path) {
+             throw new \MyException\ErrorYandexApi("НЕ задан путь", 404);
+        }
+            if($res = $this->disk->getResource($path)->delete())
+                {
+                    return TRUE;
+                }else {
+                   throw new \MyException\ErrorYandexApi("Ошибка удаления файла", 505); 
+                }
+    }
+    
+    //Функция получения (download) ресурса
+    public function downloadResourse (string $path = null) {
+        if(!$path) {
+             throw new \MyException\ErrorYandexApi("НЕ задан путь", 404);
+        }
+        
+        if($res = $this->disk->getResource($path)->download("php://temp"))
+                {
+                    return TRUE;
+                }else {
+                   throw new \MyException\ErrorYandexApi("Ошибка удаления файла", 505); 
+                }
+    }
 }

@@ -24,6 +24,7 @@
     "vinyl-ftp": "^0.6.1"
   },
   "dependencies": {
-    "gulp-imagemin": "^7.1.0"
+    "gulp-imagemin": "^7.1.0",
+    "noty": "^3.2.0-beta-deprecated"
   }
 }

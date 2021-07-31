@@ -126,7 +126,7 @@ gulp.task("copy-js-ext", function () {
 });
 //Оптимизация js
 gulp.task("scripts", function() {
-    return gulp.src("app/templates/js/*.js") // директория откуда брать исходники
+    return gulp.src("app/frontend/js/**/*.js") // директория откуда брать исходники
         .pipe(concat('main.js')) // объеденим все js-файлы в один 
         .pipe(uglify()) // вызов плагина uglify - сжатие кода
         .pipe(rename({ suffix: '.min' })) // вызов плагина rename - переименование файла с приставкой .min
@@ -154,6 +154,7 @@ gulp.task ("watcher", function () {
     gulp.watch("app/frontend/fonts/**/*",  gulp.parallel('fonts'));
     gulp.watch("app/frontend/images/**/*.+(png|jpeg|jpg|svg|gif|ico)",  gulp.parallel('images'));
     gulp.watch("app/frontend/css/**/*.css", gulp.parallel("css"));
+    gulp.watch("app/frontend/js/**/*.js", gulp.parallel("scripts"));
     gulp.watch("app/extensions-front/**/*.+(css)", gulp.parallel("copy-css-ext"));
     gulp.watch("app/templates/js/**/*.js", gulp.parallel("scripts"));
     gulp.watch("app/extensions-front/**/*.js", gulp.parallel("copy-js-ext"));
