@@ -55,43 +55,16 @@ class Router {
                    $this->post('/search[/]',                        '\Controller\PointControllerSearch:execute' )   ->setName('points_search');
 
                 });
-                $this->get('/storage/',                 '\Controller\YandexStorageController:execute')->setName ('storage');
-                $this->post('/storage/getResourse/',    '\Controller\YandexStorageRestApi:getResourse')->setName ('storageGetAjax');
-                $this->post('/storage/deleteResourse/', '\Controller\YandexStorageRestApi:deleteResourse')->setName ('storageDeleteAjax');
-                $this->post('/storage/downloadResourse/', '\Controller\YandexStorageRestApi:downloadResourse')->setName ('storageDownloadAjax');
-
+                
+                //Группа маршрутов для REST API Storage Yandex Disk
+                $this->group('/storage', function () {
+                    $this->get('/',                         '\Controller\YandexStorageController:execute')->setName ('storage');
+                    $this->post('/getResourse/',            '\Controller\YandexStorageRestApi:getResourse');
+                    $this->post('/deleteResourse/',         '\Controller\YandexStorageRestApi:deleteResourse');
+                    $this->post('/downloadResourse/',       '\Controller\YandexStorageRestApi:downloadResourse');
+                });
+                
          })->add('\Core\Middleware\Middleware:AuthLogin');
-          
-         $this->app->get('/testing/',     '\Controller\TestingController:execute2');
-         
-         
-         
-         
          $this->app->map(['GET', 'POST'], '/login[/]', '\Controller\LoginController:execute')->setName('login');
-
-
-
-            
-            
-            
-//        $this->app->get('/admin', '\Controller\AdminController:execute')->setName('admin')->add('\Atlas\Middleware:AuthLogin');
-//        $this->app->get('/admin/onlineusers', '\Controller\UsersController:execute')->setName('users')->add('\Atlas\Middleware:AuthLogin');
-//        $this->app->map(['GET', 'POST'], '/login', '\Controller\LoginController:execute')->setName('login');  
-//        $this->app->get('/env', function ($request, $response, $args){
-//            echo '<pre>';
-//            var_dump($this->environment);
-//            echo \Wifi\TimePage::finish_time();
-//                    
-//              echo '</pre>';
-//        })->setName('env');
-        
-        
-//  Группа маршрутов для Admin панели
-//        $this->app->group('/admin', function () {
-//           $this->get('/',  '\Atlas\CallbackRouters:home');
-//               $this->group('/views', function (){
-//                    $this->get('/', '\Atlas\CallbackRouters:home');
-//        });    
-//    });
     }
 }
