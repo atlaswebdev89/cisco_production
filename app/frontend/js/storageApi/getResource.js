@@ -27,10 +27,11 @@ var controlls_file ='<span class="control-panel file">';
     }
 controlls_file +='</span>';
 
+var path = '';
+
 (function($){
     "use strict";
         var uri = '/storage/getResourse/';
-        var path = '';
     //Для динамических элементов страницы (добавленных черех ajax или append)
     //используем делегированную обработку событий
     $('.diskYandex').on('click', "span.arrow-collapse", function (e) {
