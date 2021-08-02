@@ -32,10 +32,10 @@ class ReportsController extends DisplayController
                         $dir->create();
                 }
             //Загружаем сформированный отчет в хранилище YandexDisk
-            $resourse = $this->yandex->getResourceObj($this->path.date('Y-m').'/'.date('H-m-s').'.xls')->upload($file_report, true); 
+            $resourse = $this->yandex->getResourceObj($this->path.date('Y-m').'/Отчет по точкам ('.date('H-i-s').').xls')->upload($file_report, true); 
                 //Удаляем файл 
                 unlink($file_report);
-            return $response->withRedirect($this->container->router->pathFor('home'));
+            return $response->withRedirect($this->container->router->pathFor('storage'));
 
 
         exit;

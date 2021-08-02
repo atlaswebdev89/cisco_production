@@ -18,7 +18,7 @@ class YandexStorageRestApiModel  {
         }
         
         $listDisk = [];
-        $resource = $this->disk->getResource($path)->toObject(['name', 'items']);
+        $resource = $this->disk->getResource($path)->setSort('created', 'true')->toObject(['name', 'items']);
                         foreach ($resource->items as $item) {
                                 $td = explode('T', $item->modified);
                                 $date = $td[0];
@@ -33,6 +33,7 @@ class YandexStorageRestApiModel  {
                                             'resourse_id' => md5($item->resource_id),
                                     ];
                             } 
+                            ksort($listDisk);
                 return $listDisk;
     }
     

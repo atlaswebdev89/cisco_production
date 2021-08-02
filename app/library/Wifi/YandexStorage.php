@@ -35,12 +35,12 @@ class YandexStorage {
         }
         
         $listDisk = [];
-        $resource = $this->disk->getResource($path)->toObject(['name', 'items']);
+        $resource = $this->disk->getResource($path)->setSort('created', 'true')->toObject(['name', 'items']);
                         foreach ($resource->items as $item) {
                                 $td = explode('T', $item->modified);
                                 $date = $td[0];
                                 $time = date('H:i:s',(strtotime(substr($td[1],0,8))+(60*60*3)));
-                              $item = $item->toObject();
+                                $item = $item->toObject();
                                     $listDisk [] = [
                                             'name' => trim($item->name),
                                             'date' => $date,
@@ -50,7 +50,7 @@ class YandexStorage {
                                             'resourse_id' => md5($item->resource_id),
                                     ];
                             } 
-                return $listDisk;
+                        return $listDisk;
     }
     
     public function getResourceObj ($path) {

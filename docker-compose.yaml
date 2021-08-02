@@ -14,11 +14,13 @@ services:
             DB_USER: cisco
             DB_PASS: brestcoredallas89
             MEMCACHED_1: memcached
+            TZ: Europe/Minsk
         volumes:
           - ./VirtualHosts/:/etc/apache2/sites-enabled/
           - ./dist/:/var/www/html
         depends_on:
           - db
+        #command: ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} > /etc/timezone
         networks:
           - cisco_network
           
