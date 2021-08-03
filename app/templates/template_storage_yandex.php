@@ -25,20 +25,20 @@
                                                                     <div class="col-md-3 ">
                                                                         <span class="control-panel dir">
                                                                             <i class="icon-download2 controlls" data-target = "download" data-title="Скачать"></i>
-                                                                            <i class="icon-upload2 controlls"   data-target = "upload"  data-title="Загрузить"></i>
+                                                                            <!-- <i class="icon-upload2 controlls"   data-target = "upload"  data-title="Загрузить"></i> -->
                                                                             <i class="icon-delete controlls"    data-target = "delete"  data-title="Удалить"></i>
-                                                                            <i class="icon-box-add controlls"   data-target = "add"     data-title="Создать папку"></i>
+                                                                            <!--<i class="icon-box-add controlls"   data-target = "add"     data-title="Создать папку"></i>-->
                                                                             <i class="icon-loading controlls"   data-target = "update" data-title="Обновить"></i>
-                                                                            <i class="icon-tag controlls"       data-target = "rename"  data-title="Переименовать"></i>
+                                                                            <!--<i class="icon-tag controlls"       data-target = "rename"  data-title="Переименовать"></i>-->
                                                                         </span>
                                                                     </div>
                                                                 {% else %}
                                                                     <div class="col-md-3">
                                                                         <span class="control-panel file">
                                                                             <i class="icon-download2" data-title="Скачать"></i>
-                                                                            <i class="icon-upload2" data-title="Загрузить"></i>
+                                                                            <!--<i class="icon-upload2" data-title="Загрузить"></i>-->
                                                                             <i class="icon-delete" data-title="Удалить"></i>
-                                                                            <i class="icon-tag" data-title="Переименовать"></i>
+                                                                            <!--<i class="icon-tag" data-title="Переименовать"></i>-->
                                                                         </span>
                                                                     </div>
                                                                 {% endif %}

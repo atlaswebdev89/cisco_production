@@ -3,15 +3,15 @@ var count_ajax = 3;
 
 var controlls_dir_items = {
        download:    ['icon-download2',  "Скачать"],
-       upload:      ['icon-upload2',    "Загрузить"],
+      // upload:      ['icon-upload2',    "Загрузить"],
        update:      ['icon-loading',    "Обновить"],
-       rename:      ['icon-tag',        "Переименовать"],
-       add:         ['icon-box-add',    "Создать папку"],
+      // rename:      ['icon-tag',        "Переименовать"],
+      // add:         ['icon-box-add',    "Создать папку"],
        delete:      ['icon-delete',     "Удалить"]
     };
 var controlls_file_items = {
        download:    ['icon-download2',  "Скачать"],
-       rename:      ['icon-tag',        "Переименовать"],
+      // rename:      ['icon-tag',        "Переименовать"],
        delete:      ['icon-delete',     "Удалить"]
     };
 
