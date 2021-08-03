@@ -11,6 +11,11 @@ class YandexStorageRestApiModel  {
         $this->disk=$container->yandexDisk->getConnect(); 
     }
     
+    //Функция получения ресурса 
+    public function getResourceRaw (string $path) {
+        return $this->disk->getResource($path);
+    }
+    
     //Функция получения списка отчетов на странице отчеты
     public function getResource (string $path = null) {
         if (!isset ($path) && empty($path)) {
@@ -33,7 +38,6 @@ class YandexStorageRestApiModel  {
                                             'resourse_id' => md5($item->resource_id),
                                     ];
                             } 
-                            ksort($listDisk);
                 return $listDisk;
     }
     
@@ -46,23 +50,18 @@ class YandexStorageRestApiModel  {
                 {
                     return TRUE;
                 }else {
-                   throw new \MyException\ErrorYandexApi("Ошибка удаления файла", 505); 
+                    throw new \MyException\ErrorYandexApi("Ошибка удаления файла", 505); 
                 }
     }
     
     //Функция получения (download) ресурса
     public function downloadResourse (string $path = null) {
         if(!$path) {
-             throw new \MyException\ErrorYandexApi("НЕ задан путь", 404);
+             throw new \MyException\ErrorYandexApi("Не задан путь", 404);
         }
         
         $file = fopen("php://temp", "r+b");
-             $this->disk->getResource($path)->download($file);
-               
-                    return $file;
-                //}else {
-                   
-                //   throw new \MyException\ErrorYandexApi("Ошибка скачивания файла", 505); 
-               // }
+                $result = $this->disk->getResource($path)->download($file);
+            return $file;
     }
 }

@@ -58,12 +58,25 @@ class YandexStorageRestApi extends RestApiController {
     
     //Функция download ресурса
     public function downloadResourse ($request, $response, $args) {
-        if ($request->isPost()) {
-            $posts_data = $request->getParsedBody();
-                if($res = $this->api_request('downloadResourse', $posts_data['path'])){
-                    $this->downloadFiles($res);
-                            $this->sendData(['status' => true]);
-                };
+        
+       if($request->isGet()) {
+           $query =  $request->getUri()->getQuery(); 
+           $queryArray = explode('=', $query);
+           if($queryArray[0] == 'path') {
+               $pathResourse =  urldecode($queryArray[1]);
+           }
+           if($descriptor = $this->api_request('downloadResourse', $pathResourse)){
+                    if($resource = $this->api_request('getResourceRaw', $pathResourse)) {
+                            $name = $resource->toObject()->name;
+                                if($resource->isDir()) {
+                                    $this->downloadDir($descriptor);
+                                }else if ($resource->isFile()) {
+                                    $this->downloadFiles($descriptor, $name);
+                                }
+               }
+            }else {
+                echo "Ошибка скачивания файла";
+            };
        }
     }
     

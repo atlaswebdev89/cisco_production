@@ -61,7 +61,7 @@ class Router {
                     $this->get('/',                         '\Controller\YandexStorageController:execute')->setName ('storage');
                     $this->post('/getResourse/',            '\Controller\YandexStorageRestApi:getResourse');
                     $this->post('/deleteResourse/',         '\Controller\YandexStorageRestApi:deleteResourse');
-                    $this->post('/downloadResourse/',       '\Controller\YandexStorageRestApi:downloadResourse');
+                    $this->get('/downloadResourse/',        '\Controller\YandexStorageRestApi:downloadResourse');
                 });
                 
          })->add('\Core\Middleware\Middleware:AuthLogin');

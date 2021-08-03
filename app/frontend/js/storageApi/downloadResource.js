@@ -17,24 +17,11 @@
                     })
                             .then((willDownload) => {
                                     if (willDownload) {
-                                                ajaxDataRequest(uri,'path='+resourse.data('path'), resourse, downloadCallback);
+                                        window.location.href = ""+uri+"?path="+resourse.data('path');
                                     }
                             });
                     }
-   
-   //Функция обработчик результатов ajax запроса
-   function downloadCallback (data) {
-                if(data) {
-                    if(data.status == true){
-                       //Выводим оповещение     
-                       notify("Ресурс * "+resourse.data('path')+" * скачан", "success");     
-                    }else if (data.status == 'empty') {
-                                   
-                    }else if (data.status == 'error') {
-                        errorApiHandler(data.data);
-                    }
-                }
-        }    
+    
     });  
 })();
 

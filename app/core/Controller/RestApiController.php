@@ -32,26 +32,52 @@ class RestApiController {
     }
     
     //Функция для скачивания 
-    public function downloadFiles ($filepath) {
+    public function downloadFiles ($filepath, $name = 'report.xls') {
         
     // сбрасываем буфер вывода PHP, чтобы избежать переполнения памяти выделенной под скрипт
     // если этого не сделать файл будет читаться в память полностью!
     if (ob_get_level()) {
       ob_end_clean();
     }
-    // заставляем браузер показать окно сохранения файла
-    header('Content-Description: File Transfer');
-    header('Content-Type: application/octet-stream');
-    header('Content-Disposition: attachment; filename=new.xls');
-    header('Content-Transfer-Encoding: binary');
-    header('Expires: 0');
-    header('Cache-Control: must-revalidate');
-    header('Pragma: public');
-    //header('Content-Length: ' . filesize($filepath));
-    // читаем файл и отправляем его пользователю
-    rewind($filepath);
+            // заставляем браузер показать окно сохранения файла
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename='.$name);
+            header('Content-Transfer-Encoding: binary');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+        
+        // читаем файл и отправляем его пользователю
+        //переводим указатель на начало файла
+        rewind($filepath);
             echo stream_get_contents($filepath);
-      fclose($filepath);
+        fclose($filepath);
+        
+    }
+    
+//Функция для скачивания 
+    public function downloadDir ($description) {
+        
+    // сбрасываем буфер вывода PHP, чтобы избежать переполнения памяти выделенной под скрипт
+    // если этого не сделать файл будет читаться в память полностью!
+    if (ob_get_level()) {
+      ob_end_clean();
+    }
+            // заставляем браузер показать окно сохранения файла
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename=archive.zip');
+            header('Content-Transfer-Encoding: binary');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+    
+        // читаем файл и отправляем его пользователю
+        //переводим указатель на начало файла
+        fseek($description, 0);
+            echo stream_get_contents($description);
+        fclose($description);
         
     }
 }

@@ -170,7 +170,7 @@ class ExcelReports
                     
                     //Сохраним во временный файл
                     if ($temp_file = fopen("php://temp", 'w+')) {
-                            $objWriter->save($fp);
+                            $objWriter->save($temp_file);
                         return $temp_file;
                     };
                 return FALSE;
