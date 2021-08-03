@@ -9,8 +9,6 @@ class ExcelReports
     protected $ArrayData = [];
     protected $garant;
     
-    public $pathFile_report = "temp/reportsPoints.xls";
-    
     public function __construct($model)
     {
         $this->model = $model;
@@ -169,16 +167,15 @@ class ExcelReports
             
             //Сохранение Excel документа 
             $objWriter = \PHPExcel_IOFactory::createWriter($xls, 'Excel5');
-            
-            $objWriter->save(TEMP.$this->pathFile_report);
-            
-            if(file_exists(TEMP.$this->pathFile_report)) {
-                return TEMP.$this->pathFile_report;
-            }else {
+                    
+                    //Сохраним во временный файл
+                    if ($temp_file = fopen("php://temp", 'w+')) {
+                            $objWriter->save($fp);
+                        return $temp_file;
+                    };
                 return FALSE;
-            }
         }
-
+        
         public function getCsv ($request, $response, $args) {
             $string = '';
             $replace = array(',', ';');

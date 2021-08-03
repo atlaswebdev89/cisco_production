@@ -60,8 +60,9 @@ class YandexStorageRestApi extends RestApiController {
     public function downloadResourse ($request, $response, $args) {
         if ($request->isPost()) {
             $posts_data = $request->getParsedBody();
-                if($this->api_request('downloadResourse', $posts_data['path'])){
-                    return $this->sendData(['status' => true]);
+                if($res = $this->api_request('downloadResourse', $posts_data['path'])){
+                    $this->downloadFiles($res);
+                            $this->sendData(['status' => true]);
                 };
        }
     }

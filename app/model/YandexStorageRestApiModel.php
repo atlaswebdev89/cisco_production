@@ -56,11 +56,13 @@ class YandexStorageRestApiModel  {
              throw new \MyException\ErrorYandexApi("НЕ задан путь", 404);
         }
         
-        if($res = $this->disk->getResource($path)->download("php://temp"))
-                {
-                    return TRUE;
-                }else {
-                   throw new \MyException\ErrorYandexApi("Ошибка удаления файла", 505); 
-                }
+        $file = fopen("php://temp", "r+b");
+             $this->disk->getResource($path)->download($file);
+               
+                    return $file;
+                //}else {
+                   
+                //   throw new \MyException\ErrorYandexApi("Ошибка скачивания файла", 505); 
+               // }
     }
 }

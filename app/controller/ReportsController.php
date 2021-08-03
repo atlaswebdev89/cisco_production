@@ -25,16 +25,16 @@ class ReportsController extends DisplayController
     //переделать под асинхронные запросы
     public function execute ($request, $response, $args) {
             //Формируем отчет и помещаем его во временную папку
-            $file_report =  $this->report->getExcel($request, $response, $args);
+            $file_temp_report =  $this->report->getExcel($request, $response, $args);
             //Проверяем если ли папка для отчетов в текущем месяце Если нет создаем ее       
             $dir =  $this->yandex->getResourceObj($this->path.date('Y-m').'/');
                 if(!$dir->has()) { 
                         $dir->create();
                 }
             //Загружаем сформированный отчет в хранилище YandexDisk
-            $resourse = $this->yandex->getResourceObj($this->path.date('Y-m').'/Отчет по точкам ('.date('H-i-s').').xls')->upload($file_report, true); 
+            $resourse = $this->yandex->getResourceObj($this->path.date('Y-m').'/Отчет по точкам ('.date('H-i-s').').xls')->upload($file_temp_report, true); 
                 //Удаляем файл 
-                unlink($file_report);
+                fclose($file_temp_report);
             return $response->withRedirect($this->container->router->pathFor('storage'));
 
 
