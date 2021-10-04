@@ -102,7 +102,7 @@ class AclUser {
         }
        
         //Удаляем последний слеш при его наличии в uri запроса
-        if (strlen($permission)>1 && $permission{strlen($permission)-1} == '/')
+        if (strlen($permission)>1 && substr($permission, -1) == '/')
         {
             $permission = substr($permission,0,-1);
         }
