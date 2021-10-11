@@ -31,7 +31,7 @@
 
                     <a href = "/reports/">
                         <button class="btn-info btn btn-sm navbar-btn navbar-right" >
-                            <span style="">Скачать файл</span>
+                            <span style="">makeReport</span>
                         </button>
                     </a>
 

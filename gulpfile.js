@@ -11,8 +11,8 @@ var gulp = require('gulp'),
 
 var shell = require("gulp-shell"); // Переименование файлов
 var rsync = require('gulp-rsync'); //Синхронизация папок и файлов
-var ftp = require('gulp-ftp'); // Передача через ftp
-var ftpV = require('vinyl-ftp');
+var ftpV = require('vinyl-ftp'); // Для загрузки по ftp
+var gutil = require('gulp-util'); // Дополнительные утилиты
 //
 //Копирование файлов php html json log из папки app
 gulp.task("copy", function () {
@@ -52,25 +52,16 @@ gulp.task("rsync-docker", function () {
     })); 
 });
 
-//Синхронизация проекта с хостингом на beget.com через ftp
-gulp.task("ftp-beget", function () {
-    return gulp.src('dist/**/*', { dot: true })
-        .pipe(ftp({
-            host: 'p333709a.bget.ru',
-            user: 'p333709a_cisco',
-            pass: 'Brestcoredallas89!'
-        }));
-});
-
 //Выгрузка на хостинг через ftp
 gulp.task('deploy-beget', function() {
 		var conn = ftpV.create({
 		host: 'p333709a.bget.ru',
 		user: 'p333709a_cisco',
 		password: 'Brestcoredallas89!',
-		parallel:  10
+		parallel:  10,
+                log: gutil.log
 	});
-        
+            console.log("ftp task is running!");
 	return gulp.src('dist/**/*', { dot: true, buffer: false })
 		.pipe(conn.dest('/'));
 	});
